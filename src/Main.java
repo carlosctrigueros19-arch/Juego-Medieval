@@ -102,7 +102,7 @@ public class Main {
 		        jugador.mostrarHistoria();
 		        pausar();
 
-		        GameEngine engine = new GameEngine(jugador, scanner);
+		        Gameengine engine = new Gameengine(jugador, scanner);
 		        engine.iniciar();
 
 		        // Al terminar la partida, volver al menú con su música
@@ -207,9 +207,11 @@ public class Main {
 		        System.out.println("  ══════════════════════════════════════════════");
 		        System.out.println("   CRÉDITOS");
 		        System.out.println("  ══════════════════════════════════════════════");
-		        System.out.println("  Proyecto: Resolución de Problemas");
+		        System.out.println("  Proyecto: Juego de rol");
 		        System.out.println("  Instituto Nacional de Sonzacate");
 		        System.out.println("  Prof. Kevin Antonio Valenzuela");
+		        System.out.println();
+		        System.out.println("  Programadores: Gabriela Interiano, Lidia Rodriguez, Carlos Trigueros");
 		        System.out.println();
 		        System.out.println("  Desarrollado en Java — Eclipse IDE");
 		        System.out.println("  Historia: El Trono de la Oscuridad");

@@ -107,10 +107,10 @@
 	                return new Enemigo(
 	                    "Señor de las Raíces",
 	                    "Guardián ancestral del bosque corrompido",
-	                    220,   // vida
-	                    38,    // ataque
-	                    18,    // defensa
-	                    40,    // maná recompensa
+	                    200,   // vida
+	                    25,    // ataque
+	                    15,    // defensa
+	                    50,    // maná recompensa
 	                    true
 	                );
 
@@ -118,10 +118,10 @@
 	                return new Enemigo(
 	                    "Criatura Acuática Corrompida",
 	                    "Gigante del lago deformado por energía del Trono",
-	                    260,
-	                    44,
-	                    22,
-	                    45,
+	                    220,
+	                    30,
+	                    18,
+	                    55,
 	                    true
 	                );
 
@@ -129,10 +129,10 @@
 	                return new Enemigo(
 	                    "Dragón Guardián Antiguo",
 	                    "El más viejo y poderoso de los dragones corrompidos",
-	                    300,
-	                    52,
-	                    28,
-	                    50,
+	                    250,
+	                    35,
+	                    20,
+	                    70,
 	                    true
 	                );
 
@@ -143,9 +143,9 @@
 	                return new Enemigo(
 	                    "El Hechicero Desterrado",
 	                    "Su poder alcanza el máximo con los 3 fragmentos reunidos",
-	                    380,
-	                    60,
-	                    20,
+	                    250,
+	                    40,
+	                    10,
 	                    0,    // sin recompensa — es el final
 	                    true
 	                );
@@ -209,4 +209,4 @@
 	    }
 	}
 
-}
+
