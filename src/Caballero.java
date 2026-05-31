@@ -17,9 +17,9 @@
 	    public Caballero(String nombre) {
 	        super(nombre,
 	              150,   // vidaMax  — el más resistente
-	              60,    // manaMax  — usa poca magia
-	              55,    // ataque   — el más fuerte físicamente
-	              35,    // defensa
+	              90,    // manaMax  — usa poca magia
+	              50,    // ataque   — el más fuerte físicamente
+	              25,    // defensa
 	              "Tanque / Combate físico",
 	              "Escalibur");
 	        this.cargaActiva  = false;
