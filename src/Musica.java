@@ -1,3 +1,5 @@
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import javax.sound.sampled.*;
 
 public class Musica {
@@ -5,7 +7,7 @@ public class Musica {
     private static Clip clipMusica;
     private static float volumen = 0.8f;
     private static boolean musicaActiva = true;
-    private static boolean efectosActivos = true; // 🔥 FALTABA ESTO
+    private static boolean efectosActivos = true;
     private static String archivoActual = "";
 
     // ── REPRODUCIR MÚSICA ───────────────────────────────
@@ -24,22 +26,27 @@ public class Musica {
         archivoActual = archivo;
 
         try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(
-                Musica.class.getResource("/audio/" + archivo)
-            );
+            // ✅ CORRECCIÓN: Leer desde dentro del JAR con getResourceAsStream
+            InputStream is = Musica.class.getResourceAsStream("/audio/" + archivo);
 
-            if (stream == null) {
-                System.out.println("No se encontró el audio: " + archivo);
+            if (is == null) {
+                System.out.println("❌ No se encontró el audio: /audio/" + archivo);
                 return;
             }
 
+            // ✅ BufferedInputStream necesario para que AudioSystem pueda hacer mark/reset
+            AudioInputStream stream = AudioSystem.getAudioInputStream(
+                new BufferedInputStream(is)
+            );
+
             clipMusica = AudioSystem.getClip();
             clipMusica.open(stream);
-
             ajustarVolumen(clipMusica, volumen);
-
             clipMusica.loop(Clip.LOOP_CONTINUOUSLY);
             clipMusica.start();
+
+            // ✅ Cerrar el stream después de cargar (el Clip ya tiene los datos)
+            stream.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,7 +57,9 @@ public class Musica {
     public static void detenerMusica() {
         try {
             if (clipMusica != null) {
-                clipMusica.stop();
+                if (clipMusica.isRunning()) {
+                    clipMusica.stop();
+                }
                 clipMusica.close();
                 clipMusica = null;
             }
@@ -59,7 +68,7 @@ public class Musica {
         }
     }
 
-    // ── TOGGLE MÚSICA (🔥 TE FALTABA) ─────────────────
+    // ── TOGGLE MÚSICA ───────────────────────────────
     public static void toggleMusica() {
         musicaActiva = !musicaActiva;
 
@@ -68,7 +77,6 @@ public class Musica {
             System.out.println("Música OFF");
         } else {
             System.out.println("Música ON");
-
             if (!archivoActual.isEmpty()) {
                 String temp = archivoActual;
                 archivoActual = "";
@@ -77,7 +85,7 @@ public class Musica {
         }
     }
 
-    // ── TOGGLE EFECTOS (🔥 TE FALTABA) ─────────────────
+    // ── TOGGLE EFECTOS ───────────────────────────────
     public static void toggleEfectos() {
         efectosActivos = !efectosActivos;
         System.out.println("Efectos: " + (efectosActivos ? "ON" : "OFF"));
@@ -86,7 +94,6 @@ public class Musica {
     // ── VOLUMEN ───────────────────────────────
     public static void setVolumen(float v) {
         volumen = Math.max(0f, Math.min(1f, v));
-
         if (clipMusica != null) {
             ajustarVolumen(clipMusica, volumen);
         }
@@ -102,11 +109,11 @@ public class Musica {
         }
     }
 
-    // ── MÉTODOS DE ESCENA ───────────────────────────────
-    public static void musicaMenu()     { reproducirMusica("zona.wav"); }
-    public static void musicaBosque()   { reproducirMusica("zona.wav"); }
+    // ── ESCENAS ───────────────────────────────
+    public static void musicaMenu()     { reproducirMusica("victoria.wav"); }
+    public static void musicaBosque()   { reproducirMusica("final.wav"); }
     public static void musicaLago()     { reproducirMusica("zona.wav"); }
-    public static void musicaTorre()    { reproducirMusica("zona.wav"); }
+    public static void musicaTorre()    { reproducirMusica("derrota.wav"); }
 
     public static void musicaCombate()  { reproducirMusica("combate.wav"); }
     public static void musicaJefe()     { reproducirMusica("combate.wav"); }
@@ -115,3 +122,4 @@ public class Musica {
     public static void musicaVictoria() { reproducirMusica("victoria.wav"); }
     public static void musicaDerrota()  { reproducirMusica("derrota.wav"); }
 }
+
