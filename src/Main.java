@@ -183,11 +183,11 @@ public class Main {
 			int op = leerEntero(1, 5);
 			switch (op) {
 			case 1:
-				Musica.toggleMusica();
-				break;
+			    Musica.toggleMusica();
+			    break;
 			case 2:
-				Musica.toggleEfectos();
-				break;
+			    Musica.toggleEfectos();
+			    break;
 			case 3:
 				Musica.setVolumen(0.9f);
 				System.out.println("  Volumen alto.");

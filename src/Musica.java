@@ -1,109 +1,117 @@
 import javax.sound.sampled.*;
-import java.io.File;
 
-/**
- * Clase Musica — El Trono de la Oscuridad
- *
- * Archivos necesarios en carpeta /audio:
- *   zona.wav      → menú principal + las 3 zonas
- *   combate.wav   → combates normales y jefes
- *   final.wav     → batalla final
- *   victoria.wav  → victoria
- *   derrota.wav   → game over
- */
 public class Musica {
 
-    private static Clip    clipMusica;
-    private static float   volumen        = 0.8f;
-    private static boolean musicaActiva   = true;
-    private static boolean efectosActivos = true;
-    private static String  archivoActual  = "";  // recuerda qué estaba sonando
-    private static final String RUTA      = "audio/";
+    private static Clip clipMusica;
+    private static float volumen = 0.8f;
+    private static boolean musicaActiva = true;
+    private static boolean efectosActivos = true; // 🔥 FALTABA ESTO
+    private static String archivoActual = "";
 
-    // ── Reproducir música en loop ─────────────────────────────────────────
+    // ── REPRODUCIR MÚSICA ───────────────────────────────
     public static void reproducirMusica(String archivo) {
+
         if (!musicaActiva) {
-            archivoActual = archivo;  // guarda para cuando se reactive
+            archivoActual = archivo;
             return;
         }
 
-        // Si ya está sonando el mismo archivo, no reiniciar
-        if (archivo.equals(archivoActual) && clipMusica != null
-                && clipMusica.isRunning()) return;
+        if (archivo.equals(archivoActual) && clipMusica != null && clipMusica.isRunning()) {
+            return;
+        }
 
         detenerMusica();
         archivoActual = archivo;
 
         try {
-            File f = new File(RUTA + archivo);
-            if (!f.exists()) return;
-            AudioInputStream stream = AudioSystem.getAudioInputStream(f);
+            AudioInputStream stream = AudioSystem.getAudioInputStream(
+                Musica.class.getResource("/audio/" + archivo)
+            );
+
+            if (stream == null) {
+                System.out.println("No se encontró el audio: " + archivo);
+                return;
+            }
+
             clipMusica = AudioSystem.getClip();
             clipMusica.open(stream);
+
             ajustarVolumen(clipMusica, volumen);
+
             clipMusica.loop(Clip.LOOP_CONTINUOUSLY);
             clipMusica.start();
+
         } catch (Exception e) {
-            // El juego nunca se cae por audio
+            e.printStackTrace();
         }
     }
 
-    // ── Detener ───────────────────────────────────────────────────────────
+    // ── DETENER MÚSICA ───────────────────────────────
     public static void detenerMusica() {
         try {
             if (clipMusica != null) {
-                if (clipMusica.isRunning()) clipMusica.stop();
+                clipMusica.stop();
                 clipMusica.close();
                 clipMusica = null;
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // ── Toggle música — ahora sí reactiva correctamente ───────────────────
+    // ── TOGGLE MÚSICA (🔥 TE FALTABA) ─────────────────
     public static void toggleMusica() {
         musicaActiva = !musicaActiva;
+
         if (!musicaActiva) {
             detenerMusica();
-            System.out.println("  Música: OFF");
+            System.out.println("Música OFF");
         } else {
-            System.out.println("  Música: ON");
-            // Retoma el archivo que estaba sonando antes de apagar
+            System.out.println("Música ON");
+
             if (!archivoActual.isEmpty()) {
-                String retomar = archivoActual;
-                archivoActual  = "";  // limpiar para forzar reinicio
-                reproducirMusica(retomar);
+                String temp = archivoActual;
+                archivoActual = "";
+                reproducirMusica(temp);
             }
         }
     }
 
+    // ── TOGGLE EFECTOS (🔥 TE FALTABA) ─────────────────
     public static void toggleEfectos() {
         efectosActivos = !efectosActivos;
-        System.out.println("  Efectos: " + (efectosActivos ? "ON" : "OFF"));
+        System.out.println("Efectos: " + (efectosActivos ? "ON" : "OFF"));
     }
 
-    // ── Volumen ───────────────────────────────────────────────────────────
+    // ── VOLUMEN ───────────────────────────────
     public static void setVolumen(float v) {
-        volumen = Math.max(0.0f, Math.min(1.0f, v));
-        if (clipMusica != null) ajustarVolumen(clipMusica, volumen);
+        volumen = Math.max(0f, Math.min(1f, v));
+
+        if (clipMusica != null) {
+            ajustarVolumen(clipMusica, volumen);
+        }
     }
 
     private static void ajustarVolumen(Clip clip, float vol) {
         try {
-            FloatControl fc = (FloatControl)
-                clip.getControl(FloatControl.Type.MASTER_GAIN);
-            float dB = (float)(Math.log10(Math.max(vol, 0.0001)) * 20);
-            fc.setValue(Math.max(fc.getMinimum(), Math.min(fc.getMaximum(), dB)));
-        } catch (Exception e) {}
+            FloatControl fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float dB = (float) (Math.log10(Math.max(vol, 0.0001)) * 20);
+            fc.setValue(dB);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // ── Métodos por escena ────────────────────────────────────────────────
-    public static void musicaMenu()     { reproducirMusica("zona.wav");    }  // menú usa zona.wav
-    public static void musicaBosque()   { reproducirMusica("zona.wav");    }
-    public static void musicaLago()     { reproducirMusica("zona.wav");    }
-    public static void musicaTorre()    { reproducirMusica("zona.wav");    }
+    // ── MÉTODOS DE ESCENA ───────────────────────────────
+    public static void musicaMenu()     { reproducirMusica("zona.wav"); }
+    public static void musicaBosque()   { reproducirMusica("zona.wav"); }
+    public static void musicaLago()     { reproducirMusica("zona.wav"); }
+    public static void musicaTorre()    { reproducirMusica("zona.wav"); }
+
     public static void musicaCombate()  { reproducirMusica("combate.wav"); }
     public static void musicaJefe()     { reproducirMusica("combate.wav"); }
-    public static void musicaFinal()    { reproducirMusica("final.wav");   }
-    public static void musicaVictoria() { reproducirMusica("victoria.wav");}
+
+    public static void musicaFinal()    { reproducirMusica("final.wav"); }
+    public static void musicaVictoria() { reproducirMusica("victoria.wav"); }
     public static void musicaDerrota()  { reproducirMusica("derrota.wav"); }
 }
