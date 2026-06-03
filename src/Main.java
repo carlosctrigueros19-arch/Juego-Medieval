@@ -1,17 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Clase principal — El Trono de la Oscuridad
+ */
 public class Main {
-
-	// TODO Auto-generated method stub
-
-	/**
-	 * Clase principal — El Trono de la Oscuridad
-	 * 
-	 * VALIDACIONES IMPLEMENTADAS: - Nunca acepta letras donde se espera número -
-	 * Nunca acepta números fuera del rango del menú - Nunca acepta nombre vacío -
-	 * Todos los try-catch evitan que el juego crashee - Si el audio falla, el juego
-	 * sigue normalmente
-	 */
 
 	static Scanner scanner = new Scanner(System.in);
 
@@ -21,7 +13,6 @@ public class Main {
 			pausar();
 			menuPrincipal();
 		} catch (Exception e) {
-			// Captura cualquier error inesperado para que el juego no crashee
 			System.out.println("\n  Ocurrió un error inesperado. Reiniciando menú...");
 			menuPrincipal();
 		} finally {
@@ -87,7 +78,6 @@ public class Main {
 		System.out.println("  ══════════════════════════════════════════════");
 		pausar();
 
-		// Nombre del jugador — nunca acepta vacío
 		String nombre = "";
 		while (nombre.isEmpty()) {
 			System.out.print("  Ingresa tu nombre, héroe: ");
@@ -102,15 +92,12 @@ public class Main {
 		}
 
 		Personaje jugador = seleccionarPersonaje(nombre);
-
 		limpiarPantalla();
 		jugador.mostrarHistoria();
 		pausar();
 
 		Gameengine engine = new Gameengine(jugador, scanner);
 		engine.iniciar();
-
-		// Al terminar la partida, volver al menú con su música
 		Musica.musicaMenu();
 	}
 
@@ -183,11 +170,11 @@ public class Main {
 			int op = leerEntero(1, 5);
 			switch (op) {
 			case 1:
-			    Musica.toggleMusica();
-			    break;
+				Musica.toggleMusica();
+				break;
 			case 2:
-			    Musica.toggleEfectos();
-			    break;
+				Musica.toggleEfectos();
+				break;
 			case 3:
 				Musica.setVolumen(0.9f);
 				System.out.println("  Volumen alto.");
@@ -232,11 +219,8 @@ public class Main {
 		System.out.println("  ══════════════════════════════════════════════");
 		System.out.println("   CRÉDITOS");
 		System.out.println("  ══════════════════════════════════════════════");
+		System.out.println("  Proyecto: Resolución de Problemas");
 		System.out.println("  Instituto Nacional de Sonzacate");
-		System.out.println("  Proyecto: Juego de rol");
-		System.out.println();
-		System.out.println("  Programadores: Gabriela Interiano, Lidia Rodriguez, Carlos Trigueros");
-		System.out.println();
 		System.out.println("  Prof. Kevin Antonio Valenzuela");
 		System.out.println();
 		System.out.println("  Desarrollado en Java — Eclipse IDE");
@@ -247,50 +231,50 @@ public class Main {
 
 	// ── Portada ───────────────────────────────────────────────────────────
 	static void mostrarPortada() {
+		String AMA = "\u001B[33m"; // amarillo
+		String AZU = "\u001B[96m"; // azul brillante
+		String NEG = "\u001B[1m"; // negrita
+		String RES = "\u001B[0m"; // reset
+
 		limpiarPantalla();
 		System.out.println();
-		System.out.println("       ██████████████████████████████████");
-		System.out.println("       █                                █");
-		System.out.println("       █   ⚔  EL TRONO DE LA          █");
-		System.out.println("       █      OSCURIDAD  🌑            █");
-		System.out.println("       █                                █");
-		System.out.println("       █   Reino de Moonhollow          █");
-		System.out.println("       █   Un reino al borde del fin    █");
-		System.out.println("       █                                █");
-		System.out.println("       ██████████████████████████████████");
+
+		System.out.println(AMA + NEG + " ___  _     _____  ___  ___  _  _  ___   ");
+		System.out.println(AMA + NEG + "| __|| |   |_   _|| _ \\/ _ \\| \\| |/ _ \\ ");
+		System.out.println(AMA + NEG + "| _| | |__   | |  |   / (_) | .` | (_) | ");
+		System.out.println(AMA + NEG + "|___||____|  |_|  |_|\\_\\___/|_|\\_|\\___/  ");
+		System.out.println(AMA + NEG + "  ___  ___                          ");
+		System.out.println(AMA + NEG + " |   \\| __|                  ");
+		System.out.println(AMA + NEG + " | |) | _|                  ");
+		System.out.println(AMA + NEG + " |___/|___|                 ");
+
+		System.out.println(AMA + NEG + "  ___  ___  ___  _   _ ___  ___ ___   _    ___  ");
+		System.out.println(AMA + NEG + " / _ \\/ __|/ __|| | | | _ \\|_ _|   \\ /_\\  |   \\ ");
+		System.out.println(AMA + NEG + "| (_) \\__ \\ (__ | |_| |   / | || |) / _ \\ | |) |");
+		System.out.println(AMA + NEG + " \\___/|___/\\___| \\___/|_|\\_|___|___/_/ \\_\\|___/ ");
+
+		System.out.println(AMA + NEG + "🌑  Reino de Moonhollow  ⚔️");
+
 		System.out.println();
-		System.out.println("  \"El poder del Trono puede salvar... o destruir\"");
+		System.out.println(AMA + NEG + "   \"El poder del Trono puede salvar... o destruir\"" + RES);
 		System.out.println();
 	}
 
-	// ══════════════════════════════════════════════════════════════════════
-	// UTILIDADES DE VALIDACIÓN — el juego NUNCA se cae aquí
-	// ══════════════════════════════════════════════════════════════════════
-
-	/**
-	 * Lee un entero entre min y max. Repite el mensaje si: - El usuario escribe
-	 * letras - El número está fuera del rango - El usuario presiona Enter sin
-	 * escribir nada - Ocurre cualquier otro error de lectura
-	 */
+	// ── Utilidades ────────────────────────────────────────────────────────
 	static int leerEntero(int min, int max) {
 		while (true) {
 			try {
 				String linea = scanner.nextLine();
-
-				// Verificar que no esté vacío
 				if (linea == null || linea.trim().isEmpty()) {
 					System.out.print("  ⚠ Debes ingresar un número entre " + min + " y " + max + ": ");
 					continue;
 				}
-
 				int valor = Integer.parseInt(linea.trim());
-
 				if (valor >= min && valor <= max) {
 					return valor;
 				} else {
 					System.out.print("  ⚠ Opción inválida. Elige entre " + min + " y " + max + ": ");
 				}
-
 			} catch (NumberFormatException e) {
 				System.out.print("  ⚠ Eso no es un número. Ingresa entre " + min + " y " + max + ": ");
 			} catch (Exception e) {
@@ -311,5 +295,4 @@ public class Main {
 		for (int i = 0; i < 40; i++)
 			System.out.println();
 	}
-
 }
