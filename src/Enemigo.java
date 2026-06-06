@@ -125,16 +125,16 @@
 
 	    /** Muestra la ficha del enemigo con barra de vida. */
 	    public void mostrarEstado() {
-	        System.out.println("  ┌─────────────────────────────────────┐");
-	        System.out.printf ("  │  %-35s│%n", (esJefe ? "★ JEFE: " : "  ") + nombre);
-	        System.out.printf ("  │  %-35s│%n", descripcion);
-	        System.out.println("  ├─────────────────────────────────────┤");
-	        System.out.printf ("  │  Vida: %-30s│%n",
+	        System.out.println("  ┌───────────────────────────────────────────────────┐");
+	        System.out.printf ("  │  %-35s%n", (esJefe ? "★ JEFE: " : "  ") + nombre);
+	        System.out.printf ("  │  %-35s%n", descripcion);
+	        System.out.println("  ├───────────────────────────────────────────────────┤");
+	        System.out.printf ("  │  Vida: %-30s%n",
 	            BarraVida.generarCompacto(vidaActual, vidaMax, 15)
 	            + "  ATK:" + ataque + " DEF:" + defensa);
 	        if (quemaduraDano > 0)
-	            System.out.printf("  │  %-35s│%n", "🔥 Quemadura: " + quemaduraDano + "/turno");
-	        System.out.println("  └─────────────────────────────────────┘");
+	            System.out.printf("  │  %-35s%n", "🔥 Quemadura: " + quemaduraDano + "/turno");
+	        System.out.println("  └───────────────────────────────────────────────────┘");
 	    }
 
 	    // ── Getters ───────────────────────────────────────────────────────────

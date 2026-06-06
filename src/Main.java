@@ -194,9 +194,9 @@ public class Main {
 	static void mostrarLore() {
 		limpiarPantalla();
 		System.out.println();
-		System.out.println("  ══════════════════════════════════════════════");
+		System.out.println("  ══════════════════════════════════════════════════");
 		System.out.println("   EL REINO DE MOONHOLLOW");
-		System.out.println("  ══════════════════════════════════════════════");
+		System.out.println("  ══════════════════════════════════════════════════");
 		System.out.println("  Hace siglos, Moonhollow era el reino más mágico");
 		System.out.println("  del mundo. Sus bosques vibraban con energía");
 		System.out.println("  natural y sus lagos respondían a la luna.");
@@ -208,7 +208,7 @@ public class Main {
 		System.out.println();
 		System.out.println("  Hasta que un hechicero desterrado regresó");
 		System.out.println("  para reclamar lo que creía suyo...");
-		System.out.println("  ══════════════════════════════════════════════");
+		System.out.println("  ══════════════════════════════════════════════════");
 		pausar();
 	}
 
@@ -216,16 +216,17 @@ public class Main {
 	static void mostrarCreditos() {
 		limpiarPantalla();
 		System.out.println();
-		System.out.println("  ══════════════════════════════════════════════");
+		System.out.println("  ══════════════════════════════════════════════════════");
 		System.out.println("   CRÉDITOS");
-		System.out.println("  ══════════════════════════════════════════════");
-		System.out.println("  Proyecto: Resolución de Problemas");
+		System.out.println("  ══════════════════════════════════════════════════════");
+		System.out.println("  Proyecto: El Trono de la Oscuridad — RPG de consola");
 		System.out.println("  Instituto Nacional de Sonzacate");
-		System.out.println("  Prof. Kevin Antonio Valenzuela");
+		System.out.println("  Desarrolladores: Gabriela Interiano, Lidia Rodriguez,");
+	    System.out.println("  Carlos Trigueros");
 		System.out.println();
 		System.out.println("  Desarrollado en Java — Eclipse IDE");
 		System.out.println("  Historia: El Trono de la Oscuridad");
-		System.out.println("  ══════════════════════════════════════════════");
+		System.out.println("  ══════════════════════════════════════════════════════");
 		pausar();
 	}
 

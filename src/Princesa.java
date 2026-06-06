@@ -100,9 +100,9 @@
 	    @Override
 	    public void mostrarHistoria() {
 	        System.out.println();
-	        System.out.println("  ══════════════════════════════════════════════");
+	        System.out.println("  ══════════════════════════════════════════════════");
 	        System.out.println("   HISTORIA — LA PRINCESA DE MOONHOLLOW");
-	        System.out.println("  ══════════════════════════════════════════════");
+	        System.out.println("  ══════════════════════════════════════════════════");
 	        System.out.println("  La noche en que el Trono se fracturó, fuiste");
 	        System.out.println("  despertada por explosiones y gritos dentro del");
 	        System.out.println("  castillo. Pasillos agrietados, guardias luchando");
@@ -111,7 +111,7 @@
 	        System.out.println("  Encontraste el Cetro de la Luz en el Lago Mágico.");
 	        System.out.println("  Ahora no eres solo una sobreviviente.");
 	        System.out.println("  Tienes el poder para salvar Moonhollow.");
-	        System.out.println("  ══════════════════════════════════════════════");
+	        System.out.println("  ══════════════════════════════════════════════════");
 	        System.out.println();
 	    }
 

@@ -76,15 +76,15 @@
 	    // ── Turno del jugador ─────────────────────────────────────────────────
 	    private String turnoJugador() {
 	        System.out.println();
-	        System.out.println("  ╔══════════════════════════════════════╗");
-	        System.out.println("  ║        ¿QUÉ HARÁS?                   ║");
-	        System.out.println("  ╠══════════════════════════════════════╣");
+	        System.out.println("  ╔══════════════════════════════════════════════════════════════════");
+	        System.out.println("  ║        ¿QUÉ HARÁS?                                           ");
+	        System.out.println("  ╠══════════════════════════════════════════════════════════════════");
 
 	        String[] habilidades = jugador.getMenuHabilidades();
 	        for (String h : habilidades) {
-	            System.out.printf("  ║  %-36s║%n", h);
+	            System.out.printf("  ║  %-36s%n", h);
 	        }
-	        System.out.println("  ╚══════════════════════════════════════╝");
+	        System.out.println("  ╚══════════════════════════════════════════════════════════════════");
 	        System.out.print("  Tu elección: ");
 
 	        int opcion = leerEntero(1, habilidades.length);

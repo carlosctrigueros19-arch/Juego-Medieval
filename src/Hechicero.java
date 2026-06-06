@@ -111,9 +111,9 @@
 	    @Override
 	    public void mostrarHistoria() {
 	        System.out.println();
-	        System.out.println("  ══════════════════════════════════════════════");
+	        System.out.println("  ══════════════════════════════════════════════════");
 	        System.out.println("   HISTORIA — EL HECHICERO DESTERRADO");
-	        System.out.println("  ══════════════════════════════════════════════");
+	        System.out.println("  ══════════════════════════════════════════════════");
 	        System.out.println("  Fuiste expulsado de Moonhollow por intentar");
 	        System.out.println("  controlar el Trono de la Oscuridad. Durante");
 	        System.out.println("  años en el exilio aprendiste magia prohibida,");
@@ -122,7 +122,7 @@
 	        System.out.println("  La noche que volviste, el Trono reaccionó a tu");
 	        System.out.println("  presencia y se fracturó en tres fragmentos.");
 	        System.out.println("  Ahora debes reunirlos antes que nadie te detenga.");
-	        System.out.println("  ══════════════════════════════════════════════");
+	        System.out.println("  ══════════════════════════════════════════════════");
 	        System.out.println();
 	    }
 

@@ -115,10 +115,10 @@ public class Musica {
     public static void musicaLago()     { reproducirMusica("zona.wav"); }
     public static void musicaTorre()    { reproducirMusica("derrota.wav"); }
 
-    public static void musicaCombate()  { reproducirMusica("combate.wav"); }
-    public static void musicaJefe()     { reproducirMusica("combate.wav"); }
+    public static void musicaCombate()  { reproducirMusica("final.wav"); }
+    public static void musicaJefe()     { reproducirMusica("final.wav"); }
 
-    public static void musicaFinal()    { reproducirMusica("final.wav"); }
+    public static void musicaFinal()    { reproducirMusica("derrota.wav"); }
     public static void musicaVictoria() { reproducirMusica("victoria.wav"); }
     public static void musicaDerrota()  { reproducirMusica("derrota.wav"); }
 }

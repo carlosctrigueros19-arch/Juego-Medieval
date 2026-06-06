@@ -107,13 +107,28 @@ public abstract class Personaje {
 
     // ── Mostrar estado en consola ─────────────────────────────────────────
     public void mostrarEstado() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.printf ("║  %-36s║%n", nombre + " — " + rol);
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.printf ("║  Vida  : %s%n", BarraVida.generar(vidaActual, vidaMax, 20));
-        System.out.printf ("║  Maná  : %s%n", BarraVida.generarMana(manaActual, manaMax, 20));
-        System.out.printf ("║  ATK %-4d  DEF %-4d               ║%n", ataque, defensa);
-        System.out.println("╚══════════════════════════════════════╝");
+
+        final String RESET   = "\u001B[0m";
+        final String AMARILLO = "\u001B[33m";
+        final String CIAN     = "\u001B[36m";
+
+        System.out.println(AMARILLO + "╔═══════════════════════════════════════════════╗" + RESET);
+        System.out.printf (AMARILLO + "║" + RESET + "  %-36s" + AMARILLO + "%n" + RESET,
+                nombre + " — " + rol);
+        System.out.println(AMARILLO + "╠═══════════════════════════════════════════════╣" + RESET);
+
+        System.out.printf (AMARILLO + "║" + RESET + "  Vida  : %s%n",
+                BarraVida.generar(vidaActual, vidaMax, 20));
+
+        System.out.printf (AMARILLO + "║" + RESET + "  Maná  : %s%n",
+                BarraVida.generarMana(manaActual, manaMax, 20));
+
+        System.out.printf (AMARILLO + "║" + RESET +
+                "  ATK %-4d  DEF %-4d                           " +
+                AMARILLO + "%n" + RESET,
+                ataque, defensa);
+
+        System.out.println(AMARILLO + "╚═══════════════════════════════════════════════╝" + RESET);
     }
 
     // ── Getters ───────────────────────────────────────────────────────────

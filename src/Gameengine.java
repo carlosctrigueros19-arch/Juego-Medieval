@@ -50,7 +50,7 @@ public class Gameengine {
         pausar();
 
         // Enemigos comunes
-        Enemigo[] comunes = EnemigosFactory.enemigosDeZona(zona);
+        Enemigo[] comunes = EnemigosFactory.enemigosDeZonaHechicero(zona);
         for (int i = 0; i < comunes.length; i++) {
             limpiarPantalla();
             // Siempre mostramos la zona correcta antes de cada encuentro
@@ -296,7 +296,7 @@ public class Gameengine {
 
     // ── Utilidades ─────────────────────────────────────────────────────────
     private void separarLinea() {
-        System.out.println("  ══════════════════════════════════════════════");
+        System.out.println("  ══════════════════════════════════════════════════════");
     }
 
     private void pausar() {
